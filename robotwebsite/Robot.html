@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+   <title>IoT projekat</title>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body style="background-image: url(robot.jpg); background-repeat: no-repeat; background-size: cover;">
+
+<h1 class="text-primary text-center" style="margin-top:50px">
+	Robot Car
+</h1>
+
+<div class="dugmici" style="margin-left: 100px; margin-right:100px; margin-top: 50px">
+	<a id="pokreni" type="button" target="target" class="btn btn-success btn-lg btn-block"  href="http://172.20.231.162:8080/start">Pokreni robota</a> 
+
+	<a id="zaustavi" type="button" target="target" class="btn btn-danger btn-lg btn-block" href="http://172.20.231.162:8080/stop">Zaustavi robota</a>
+
+	<iframe style="display:none;" name="target"></iframe>
+</div>
+
+ 
+<script>
+$("#pokreni").click(function(){
+    $.getJSON('http://172.20.231.162:8080/start', function(result){
+        $.each(result, function(i, field){
+            $("#json").append(field + " ");
+        });
+    });
+});
+
+$("#zaustavi").click(function(){
+    $.getJSON('http://172.20.231.162:8080/stop', function(result){
+        $.each(result, function(i, field){
+            $("#json").append(field + " ");
+        });
+    });
+});
+</script>
+
+
+</body>
+</html>
